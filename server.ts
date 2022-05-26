@@ -23,12 +23,16 @@ const app = express();
 app.use(express.json()); //add body parser to each following route handler
 app.use(cors()) //add CORS support to each following route handler
 
-const client = new Client(dbConfig);
-client.connect();
+//const client = new Client(dbConfig);
+//client.connect();
 
 app.get("/", async (req, res) => {
-  const dbres = await client.query('select * from categories');
-  res.json(dbres.rows);
+  const date = new Date().toLocaleString();
+  res.status(200).send(date)
+});
+
+app.get("/secret", async (req, res) => {
+  res.status(200).send("poopface123")
 });
 
 
